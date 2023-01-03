@@ -10,4 +10,5 @@ app_name = 'user'
 
 urlpatterns = [
     path('create/', views.UserCreateView.as_view(), name='create'),
+    path('token/', views.CreateTokenView.as_view(), name='token'),
 ]
