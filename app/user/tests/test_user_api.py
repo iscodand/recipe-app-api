@@ -52,7 +52,9 @@ class PublicUserApiTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_create_user_with_password_too_short(self):
-        """Test error returned if create user with password less than 8 chars."""
+        """
+        Test error returned if create user with password less than 8 chars.
+        """
         payload = {
             'name': 'Test Name',
             'email': 'test@example.com',
@@ -60,7 +62,8 @@ class PublicUserApiTests(TestCase):
         }
         response = self.client.post(CREATE_USER_URL, payload)
 
-        user_exists = get_user_model().objects.filter(email=payload['email']).exists()
+        user_exists = get_user_model().objects.filter(
+            email=payload['email']).exists()
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertFalse(user_exists)
