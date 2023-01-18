@@ -13,6 +13,7 @@
 > This API was developed with TDD Practices and have more than 60 unit tests.
 
 This project have the main objective of *improve my skills with Django Rest Framework*.  
+Made with Course: [Build a Backend REST API with Python &amp; Django - Advanced](https://londonapp.dev/c2)
 
 ## Initialization
 To run the project, use all tools describe on *Tools* section.
