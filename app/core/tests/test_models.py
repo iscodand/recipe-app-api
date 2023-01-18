@@ -67,7 +67,7 @@ class UserModelTests(TestCase):
 
 
 class RecipesModelTests(TestCase):
-    """Test for Recipes Models."""
+    """Test for Recipes Model."""
 
     def test_create_recipe(self):
         """Test create a new recipe."""
@@ -89,9 +89,10 @@ class RecipesModelTests(TestCase):
 
 
 class TagModelTests(TestCase):
-    """Test for Tag Models."""
+    """Test for Tag Model."""
 
     def test_create_tag(self):
+        """Test creating tag is successful."""
         user = create_user()
 
         tag = recipe.Tag.objects.create(
@@ -100,3 +101,18 @@ class TagModelTests(TestCase):
         )
 
         self.assertEqual(str(tag), tag.name)
+
+
+class IngredientModelTests(TestCase):
+    """Test for Ingredient Model."""
+
+    def test_create_ingredient(self):
+        """Test creating ingredient is successful."""
+        user = create_user()
+
+        ingredient = recipe.Ingredient.objects.create(
+            user=user,
+            name='Sample Ingredient'
+        )
+
+        self.assertEqual(str(ingredient), ingredient.name)
