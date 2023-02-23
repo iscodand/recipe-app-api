@@ -1,6 +1,7 @@
 """
 Test Models.
 """
+from unittest.mock import patch
 from decimal import Decimal
 
 from django.test import TestCase
@@ -87,10 +88,6 @@ class RecipesModelTests(TestCase):
         self.assertEqual(new_recipe.user, user)
         self.assertEqual(str(new_recipe), new_recipe.title)
 
-
-class TagModelTests(TestCase):
-    """Test for Tag Model."""
-
     def test_create_tag(self):
         """Test creating tag is successful."""
         user = create_user()
@@ -102,10 +99,6 @@ class TagModelTests(TestCase):
 
         self.assertEqual(str(tag), tag.name)
 
-
-class IngredientModelTests(TestCase):
-    """Test for Ingredient Model."""
-
     def test_create_ingredient(self):
         """Test creating ingredient is successful."""
         user = create_user()
@@ -116,3 +109,12 @@ class IngredientModelTests(TestCase):
         )
 
         self.assertEqual(str(ingredient), ingredient.name)
+
+    @patch('core.models.uuid.uuid4')
+    def test_recipe_file_name_uuid(self, mock_uuid):
+        """Test generating image path."""
+        uuid = 'test-uuid'
+        mock_uuid.return_value = uuid
+        file_path = recipe.recipe_image_file_path(None, 'example.jpg')
+
+        self.assertEqual(file_path, f'uploads/recipe/{uuid}.jpg')
